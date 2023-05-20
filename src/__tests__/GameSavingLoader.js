@@ -2,9 +2,7 @@ import GameSavingLoader from "../GameSavingLoader.js";
 import GameSaving from "../GameSaving.js";
 
 test('test function', (done) => {
-    GameSavingLoader.load()
-        .then((saving) => GameSavingLoader.parseData(saving))
-        .then((data) => GameSavingLoader.returnSavingObject(data))
+    GameSavingLoader.returnSavingObject()
         .then((gotObject) => {
             expect(gotObject).toEqual(new GameSaving(9, 1546300800, {
                 id: 1,

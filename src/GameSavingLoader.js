@@ -11,9 +11,15 @@ export default class GameSavingLoader {
         return json(saving);
     }
 
-    static returnSavingObject(data) {
-        const parsedData = JSON.parse(data);
-        return new GameSaving(parsedData.id, parsedData.created, parsedData.userInfo);
+    static returnSavingObject() {
+        return new Promise((resolve) => {
+            this.load()
+                .then((saving) => this.parseData(saving))
+                .then((data) => {
+                    const parsedData = JSON.parse(data);
+                    resolve(new GameSaving(parsedData.id, parsedData.created, parsedData.userInfo));
+                });
+        });
     }
 
     static async loadAsync() {
